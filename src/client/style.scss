@@ -1,0 +1,95 @@
+@import url("https://cdn.rawgit.com/tonsky/FiraCode/1.205/distr/fira_code.css");
+
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+}
+
+$bcg: #efefef;
+* {
+  font-family: "Fira Code";
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+#tetris {
+  background-image: url("./assets/tetris.png");
+}
+
+.red_tetris {
+  min-height: 100vh; /* 1 */
+  display: flex; /* 2 */
+  flex-direction: column; /* 3 */
+}
+
+.content {
+  height: 89vh;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  .top_p {
+    flex: 1;
+  }
+  .bot_p {
+    flex: 1;
+  }
+  .center {
+    flex: 10;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    .board {
+      flex: 1;
+      background-color: black;
+    }
+    .p {
+      flex: 0.4;
+    }
+  }
+}
+
+.header {
+  height: 7vh;
+  color: #000;
+  background-color: $bcg;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.footer {
+  height: 3vh;
+  color: #000;
+  background-color: $bcg;
+  text-align: center;
+}
+
+.board {
+  display: flex;
+  flex-direction: column;
+  .line {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    background-color: #fff;
+    .case {
+      flex: 1;
+      margin: 1px;
+      height: auto;
+      border: solid 0.1px black;
+      background-color: $bcg;
+      &:before {
+        content: "";
+        float: left;
+        padding-top: 100%;
+      }
+    }
+  }
+}
