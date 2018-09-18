@@ -6,21 +6,30 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Content from "../components/Content";
 
-const App = ({ message }) => (
-  <div className="red_tetris">
-    <Header />
-    <Content />
-    <Footer />
-  </div>
-);
+import { moveTetris } from "../actions/moveTetris";
+
+const App = ({ message, moveTetris }) => {
+  let move = e => {
+    e.preventDefault;
+    return moveTetris(e.keyCode);
+  };
+  return (
+    <div className="red_tetris" tabIndex="0" onKeyDown={move}>
+      <Header />
+      <Content />
+      <Footer />
+    </div>
+  );
+};
 
 const mapStateToProps = state => ({ message: state.message });
 
 App.propTypes = {
-  message: PropTypes.string
+  message: PropTypes.string,
+  moveTetris: PropTypes.func.isRequired
 };
 
 export default connect(
   mapStateToProps,
-  null
+  { moveTetris }
 )(App);

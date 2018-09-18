@@ -23,8 +23,8 @@ const initApp = (app, { host, port }, cb) => {
   app.use(webpackHotMiddleware(compiler));
 
   app.get("*", (req, res) => {
-    res.sendFile('index.html', {root : __dirname + "/dist"})
-  })
+    res.sendFile("index.html", { root: __dirname + "/dist" });
+  });
   // app.use(function(req, res, next) {
   //   // Website you wish to allow to connect
   //   res.header("Access-Control-Allow-Origin", "*");
@@ -53,14 +53,19 @@ const initApp = (app, { host, port }, cb) => {
   });
 };
 
+import Socket from "./socket.class";
+
 const initEngine = io => {
   io.on("connection", function(socket) {
-    loginfo("Socket connected: " + socket.id);
-    socket.on("action", action => {
-      if (action.type === "server/ping") {
-        socket.emit("action", { type: "pong" });
-      }
-    });
+    socket = new Socket(socket);
+    socket.startTetris();
+    // socket.on("move", movement => {
+    //   console.log(movement);
+    //   socket.emit("move", { type: "pong" });
+    // });
+    // setInterval(() => {
+    //   socket.emit("delta", {});
+    // }, 1000);
   });
 };
 

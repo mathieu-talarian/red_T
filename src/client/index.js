@@ -10,18 +10,19 @@ import params from "./../../params";
 const { server } = params;
 import "./style.scss";
 
-//import {storeStateMiddleWare} from './middleware/storeStateMiddleWare'
-import reducer from "./reducers";
+import { storeStateMiddleWare } from "./middleware/storeStateMiddleWare";
+import reducer from "./reducers/index";
 import App from "./containers/app";
 import { alert } from "./actions/alert";
 
-const initialState = {};
+global.Promise = require("bluebird");
 
 const store = createStore(
   reducer,
-  initialState,
-  composeWithDevTools(applyMiddleware(thunk))
+  composeWithDevTools(applyMiddleware(thunk, storeStateMiddleWare))
 );
+
+localStorage.setItem("url", `http://${server.host}:${server.port}`);
 
 ReactDom.render(
   <BrowserRouter>
@@ -36,9 +37,10 @@ store.dispatch(alert("Soon, will be here a fantastic Tetris ..."));
 
 import openSocket from "socket.io-client";
 // const socket = openSocket(server.url());
-const socket = openSocket(`http://${server.host}:${server.port}`);
-function subscribeToTimer(cb) {
-  socket.on("timers", timestamp => cb(null, timestamp));
-  socket.emit("subscribeToTimer", 1000);
-}
-subscribeToTimer();
+
+// const socket = openSocket(localStorage.getItem("url"));
+// function subscribeToTimer(cb) {
+//   socket.on("timers", timestamp => cb(null, timestamp));
+//   socket.emit("subscribeToTimer", 1000);
+// }
+// subscribeToTimer();

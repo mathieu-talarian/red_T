@@ -1,8 +1,8 @@
-import { ALERT_POP } from "../actions/alert";
+import { LEFT, BOT, RIGHT, TOP, SPACE } from "../actions/actions";
 
 export default (state = {}, action) => {
   switch (action.type) {
-    case ALERT_POP:
+    case (LEFT, RIGHT, BOT, TOP, SPACE):
       return { message: action.message };
     default:
       return state;

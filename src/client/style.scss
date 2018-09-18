@@ -85,6 +85,9 @@ $bcg: #efefef;
       height: auto;
       border: solid 0.1px black;
       background-color: $bcg;
+      &.piece {
+        background-color: yellow;
+      }
       &:before {
         content: "";
         float: left;

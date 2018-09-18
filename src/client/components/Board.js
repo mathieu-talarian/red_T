@@ -1,15 +1,24 @@
 import React from "react";
+import { connect } from "react-redux";
+
 import Line from "./Line";
 
-const Board = () => {
+const Board = props => {
+  const { tetris } = props.tetris;
   let lines = [];
-  let i = 0;
-  const horiz = 20;
-  const vert = 10;
-  while (i++ < horiz) {
-    lines.push(<Line key={i.toString()} cols={vert} />);
+  if (tetris) {
+    tetris.forEach((element, key) => {
+      lines.push(<Line key={key} cols={element} />);
+    });
   }
   return <div className="board">{lines}</div>;
 };
 
-export default Board;
+const mapStateToProps = ({ tetris }) => ({
+  tetris
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(Board);
