@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import Case from "./case";
 
 const Line = ({ cols }) => {
-  console.log(cols);
   let colonnes = [];
   cols.forEach((element, key) => {
     colonnes.push(<Case content={element} key={key} />);

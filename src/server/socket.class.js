@@ -13,9 +13,8 @@ export default class Socket {
   };
 
   handlePiece = () => {
-    console.log("handlePiece");
     this.socket.on("newPiece", () => {
-      this.socket.emit(this.pieces.newPiece());
+      this.socket.emit("piece", this.pieces.newPiece());
     });
   };
 }
@@ -59,9 +58,7 @@ export class Piece {
     [[1, 1], [1, 1]], // O
     [[0, 1, 0], [1, 1, 1]] // T
   ];
-  constructor() {
-    console.log(this);
-  }
+  constructor() {}
   newPiece = () => {
     return this.p_list[
       Math.floor(Math.random() * Math.floor(this.p_list.length))

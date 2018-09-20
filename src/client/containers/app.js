@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
 import Content from "../components/Content";
 
 import { moveTetris } from "../actions/moveTetris";
+import { io_api } from "../socket/api";
 
 const App = ({ message, moveTetris }) => {
   let move = e => {
