@@ -1,9 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Cube from "../assets/cube.svg";
 
-const Case = ({ content }) => (
-  <div className={"case" + (content ? " piece" : "")} />
-);
+const Case = ({ content }) => <Cube className="case" />;
+// const Case = ({ content }) => (
+//   <div className={"case" + (content ? " piece" : "")} />
+// );
 Case.propTypes = {
   content: PropTypes.number.isRequired
 };

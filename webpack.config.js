@@ -51,7 +51,7 @@ module.exports = {
         })
       },
       {
-        test: /\.(gif|png|jpe?g|svg)$/i,
+        test: /\.png$/i,
         use: [
           "file-loader",
           {
@@ -60,6 +60,16 @@ module.exports = {
               bypassOnDebug: true, // webpack@1.x
               disable: true // webpack@2.x and newer
             }
+          }
+        ]
+      },
+      {
+        test: /\.svg$/,
+        use: [
+          "babel-loader",
+          {
+            loader: "@svgr/webpack",
+            options: { babel: false }
           }
         ]
       }
