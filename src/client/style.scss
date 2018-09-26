@@ -17,48 +17,74 @@ $bcg: #efefef;
 }
 
 #tetris {
-  background-image: url("./assets/tetris.png");
+  background-image: url("http://www.technocrazed.com/wp-content/uploads/2015/12/black-wallpaper-to-set-as-background-5.jpg");
+  height: 100vh;
 }
 
 .red_tetris {
-  display: flex; /* 2 */
-  flex-direction: column; /* 3 */
-  justify-content: space-between;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: stretch;
+  align-content: stretch;
   .header {
-    flex: 2;
+    order: 1;
+    flex: 0 1 auto;
+    align-self: auto;
   }
   .content {
-    flex: 9;
+    order: 2;
+    flex: 1 1 auto;
+    align-items: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    .board {
+      border: solid 10px gray;
+
+      background-color: black;
+      width: 45vw;
+      height: 88.5vw;
+      max-height: 88.5vh;
+      max-width: 45vh;
+    }
   }
   .footer {
-    flex: 1;
+    order: 3;
+    flex: 0 1 auto;
+    align-items: auto;
   }
 }
 
-.content {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  .top_p {
-    flex: 1;
-  }
-  .bot_p {
-    flex: 1;
-  }
-  .center {
-    flex: 1;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    .board {
-      flex: 1;
-      background-color: black;
-    }
-    .p {
-      flex: 0.4;
-    }
-  }
-}
+// .content {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-around;
+//   .top_p {
+//     flex: 1;
+//   }
+//   .bot_p {
+//     flex: 1;
+//   }
+//   .center {
+//     flex: 1;
+//     display: flex;
+//     flex-direction: row;
+//     justify-content: space-around;
+//     .board {
+//       flex: 1;
+//       background-color: black;
+//     }
+//     .p {
+//       flex: 0.4;
+//     }
+//   }
+// }
 
 .header {
   color: #000;
@@ -77,23 +103,19 @@ $bcg: #efefef;
   flex-direction: column;
   .line {
     display: flex;
-    flex: 1;
+    flex: 0 1 auto;
     flex-direction: row;
     justify-content: space-around;
     padding: 0;
     margin: 0;
     list-style: none;
-    background-color: #fff;
+    background-color: black;
     .case {
       svg {
-        width: 100%;
-        height: 100%;
+        width: 100vw;
+        height: 100vw;
       }
-      flex: 1;
-      height: auto;
-      &.piece {
-        background-color: yellow;
-      }
+      // flex: 1;
       // &:before {
       //   content: "";
       //   float: left;
@@ -103,24 +125,199 @@ $bcg: #efefef;
   }
 }
 
-$test: hsl(0, 100, 50);
-$test1: darken($test, 7);
-$test2: darken($test1, 7);
-$tes: lighten($test, 10);
-$te: lighten($tes, 10);
+$black_base: hsl(0, 0, 35.3%);
+$black_base: darken($black_base, 20);
+$black_d1: darken($black_base, 7);
+$black_d2: darken($black_base, 14);
+$black_l1: lighten($black_base, 10);
+$black_l2: lighten($black_base, 20);
 
-.cls-1 {
-  fill: $te;
-}
-.cls-2 {
-  fill: $test1;
-}
-.cls-3 {
-  fill: $test;
-}
-.cls-4 {
-  fill: $test2;
-}
-.cls-5 {
-  fill: $tes;
+$red_base: darken(red, 10);
+$red_d1: darken($red_base, 7);
+$red_d2: darken($red_base, 14);
+$red_l1: lighten($red_base, 10);
+$red_l2: lighten($red_base, 20);
+
+$blue_base: lighten(blue, 20);
+$blue_d1: darken($blue_base, 7);
+$blue_d2: darken($blue_base, 14);
+$blue_l1: lighten($blue_base, 10);
+$blue_l2: lighten($blue_base, 20);
+
+$green_base: green;
+$green_d1: darken($green_base, 7);
+$green_d2: darken($green_base, 14);
+$green_l1: lighten($green_base, 10);
+$green_l2: lighten($green_base, 20);
+
+$purple_base: purple;
+$purple_d1: darken($purple_base, 7);
+$purple_d2: darken($purple_base, 14);
+$purple_l1: lighten($purple_base, 10);
+$purple_l2: lighten($purple_base, 20);
+
+$cyan_base: cyan;
+$cyan_d1: darken($cyan_base, 7);
+$cyan_d2: darken($cyan_base, 14);
+$cyan_l1: lighten($cyan_base, 10);
+$cyan_l2: lighten($cyan_base, 20);
+
+$yellow_base: yellow;
+$yellow_d1: darken($yellow_base, 7);
+$yellow_d2: darken($yellow_base, 14);
+$yellow_l1: lighten($yellow_base, 10);
+$yellow_l2: lighten($yellow_base, 20);
+
+$pink_base: pink;
+$pink_d1: darken($pink_base, 7);
+$pink_d2: darken($pink_base, 14);
+$pink_l1: lighten($pink_base, 10);
+$pink_l2: lighten($pink_base, 20);
+
+.case {
+  .cls-1 {
+    fill: $black_l2;
+  }
+  .cls-2 {
+    fill: $black_d2;
+  }
+  .cls-3 {
+    fill: $black_base;
+  }
+  .cls-4 {
+    fill: $black_d1;
+  }
+  .cls-5 {
+    fill: $black_l1;
+  }
+  &.red {
+    .cls-1 {
+      fill: red_l2;
+      stroke: $red_l2;
+    }
+    .cls-2 {
+      fill: $red_d2;
+    }
+    .cls-3 {
+      fill: $red_base;
+    }
+    .cls-4 {
+      fill: $red_d1;
+    }
+    .cls-5 {
+      fill: $red_l1;
+    }
+  }
+  &.blue {
+    .cls-1 {
+      fill: $blue_l2;
+    }
+    .cls-2 {
+      fill: $blue_d2;
+    }
+    .cls-3 {
+      fill: $blue_base;
+    }
+    .cls-4 {
+      fill: $blue_d1;
+    }
+    .cls-5 {
+      fill: $blue_l1;
+    }
+  }
+
+  &.green {
+    .cls-1 {
+      fill: $green_l2;
+    }
+    .cls-2 {
+      fill: $green_d2;
+    }
+    .cls-3 {
+      fill: $green_base;
+    }
+    .cls-4 {
+      fill: $green_d1;
+    }
+    .cls-5 {
+      fill: $green_l1;
+    }
+  }
+
+  &.purple {
+    .cls-1 {
+      fill: $purple_l2;
+    }
+    .cls-2 {
+      fill: $purple_d2;
+    }
+    .cls-3 {
+      fill: $purple_base;
+    }
+    .cls-4 {
+      fill: $purple_d1;
+    }
+    .cls-5 {
+      fill: $purple_l1;
+    }
+  }
+
+  &.cyan {
+    .cls-1 {
+      fill: $cyan_l2;
+    }
+    .cls-2 {
+      fill: $cyan_d2;
+    }
+    .cls-3 {
+      fill: $cyan_base;
+    }
+    .cls-4 {
+      fill: $cyan_d1;
+    }
+    .cls-5 {
+      fill: $cyan_l1;
+    }
+  }
+
+  &.yellow {
+    .cls-1 {
+      stroke: $yellow_l2;
+      fill: $yellow_l2;
+    }
+    .cls-2 {
+      stroke: $yellow_d2;
+      fill: $yellow_d2;
+    }
+    .cls-3 {
+      stroke: $yellow_base;
+      fill: $yellow_base;
+    }
+    .cls-4 {
+      stroke: $yellow_d1;
+      fill: $yellow_d1;
+    }
+    .cls-5 {
+      stroke: $yellow_l1;
+      fill: $yellow_l1;
+    }
+  }
+
+  &.pink {
+    .cls-1 {
+      fill: $pink_l2;
+    }
+    .cls-2 {
+      fill: $pink_d2;
+    }
+    .cls-3 {
+      fill: $pink_base;
+    }
+    .cls-4 {
+      fill: $pink_d1;
+    }
+    .cls-5 {
+      fill: $pink_l1;
+    }
+  }
 }
