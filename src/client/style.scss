@@ -45,12 +45,10 @@ $bcg: #efefef;
     align-items: center;
     align-content: center;
     .board {
-      border: solid 10px gray;
-
       background-color: black;
       width: 45vw;
-      height: 88.5vw;
-      max-height: 88.5vh;
+      height: 90vw;
+      max-height: 90vh;
       max-width: 45vh;
     }
   }
@@ -191,9 +189,9 @@ $pink_l2: lighten($pink_base, 20);
     fill: $black_l1;
   }
   &.red {
+    background-color: $red_base;
     .cls-1 {
-      fill: red_l2;
-      stroke: $red_l2;
+      fill: $red_l2;
     }
     .cls-2 {
       fill: $red_d2;
@@ -263,6 +261,7 @@ $pink_l2: lighten($pink_base, 20);
   }
 
   &.cyan {
+    background-color: $cyan_base;
     .cls-1 {
       fill: $cyan_l2;
     }
@@ -281,6 +280,7 @@ $pink_l2: lighten($pink_base, 20);
   }
 
   &.yellow {
+    background-color: $yellow_base;
     .cls-1 {
       stroke: $yellow_l2;
       fill: $yellow_l2;
@@ -304,6 +304,7 @@ $pink_l2: lighten($pink_base, 20);
   }
 
   &.pink {
+    background-color: $pink_base;
     .cls-1 {
       fill: $pink_l2;
     }
