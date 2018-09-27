@@ -1,24 +1,45 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-
+const path = require("path");
 // const dev = process.env.NODE_ENV === 'dev'
 const dev = true;
+
+const sourceMaps = {
+  eval: {
+    name: "eval",
+    build: "+++",
+    rebuild: "+++",
+    production: false
+  },
+  cheapEvalSourceMap: {
+    name: "cheap-eval-source-map",
+    build: "+",
+    rebuild: "++",
+    production: false
+  },
+  inlineSourceMap: {
+    name: "inline-source-map"
+  },
+  sourceMap: {
+    name: "source-map"
+  }
+};
 
 let cssLoaders = [
   { loader: "css-loader", options: { importLoaders: 1, minimize: !dev } }
 ];
 
 // if (!dev) {
-cssLoaders.push({
-  loader: "postcss-loader",
-  options: {
-    plugins: loader => [
-      require("autoprefixer")({
-        browsers: ["last 2 versions", "ie >= 7"]
-      })
-    ]
-  }
-});
+  cssLoaders.push({
+    loader: "postcss-loader",
+    options: {
+      plugins: loader => [
+        require("autoprefixer")({
+          browsers: ["last 2 versions", "ie >= 7"]
+        })
+      ]
+    }
+  });
 // }
 
 module.exports = {
@@ -29,7 +50,18 @@ module.exports = {
     path: __dirname + "/src/server/dist",
     filename: "index.js"
   },
-  devtool: dev ? "source-map" : false,
+  devtool: dev ? sourceMaps.sourceMap.name : false,
+  devServer: {
+    contentBase: path.join(__dirname, "dist"),
+    compress: true,
+    port: 9000,
+    proxy: {
+      "/socket.io": {
+        target: "http://localhost:3004",
+        ws: true
+      }
+    }
+  },
   module: {
     rules: [
       {

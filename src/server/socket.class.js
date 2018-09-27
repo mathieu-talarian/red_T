@@ -13,8 +13,9 @@ export default class Socket {
   };
 
   handlePiece = () => {
+    const { pieces } = this;
     this.socket.on("newPiece", () => {
-      this.socket.emit("piece", this.pieces.newPiece());
+      this.socket.emit("newPiece", this.pieces.newPiece());
     });
   };
 }

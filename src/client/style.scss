@@ -18,6 +18,8 @@ $bcg: #efefef;
 
 #tetris {
   background-image: url("http://www.technocrazed.com/wp-content/uploads/2015/12/black-wallpaper-to-set-as-background-5.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
   height: 100vh;
 }
 
@@ -113,12 +115,6 @@ $bcg: #efefef;
         width: 100vw;
         height: 100vw;
       }
-      // flex: 1;
-      // &:before {
-      //   content: "";
-      //   float: left;
-      //   padding-top: 100%;
-      // }
     }
   }
 }
@@ -154,7 +150,7 @@ $purple_d2: darken($purple_base, 14);
 $purple_l1: lighten($purple_base, 10);
 $purple_l2: lighten($purple_base, 20);
 
-$cyan_base: cyan;
+$cyan_base: darken(cyan, 10);
 $cyan_d1: darken($cyan_base, 7);
 $cyan_d2: darken($cyan_base, 14);
 $cyan_l1: lighten($cyan_base, 10);
@@ -172,7 +168,11 @@ $pink_d2: darken($pink_base, 14);
 $pink_l1: lighten($pink_base, 10);
 $pink_l2: lighten($pink_base, 20);
 
-.case {
+svg {
+  width: 10%;
+  height: 5%;
+}
+svg.case {
   .cls-1 {
     fill: $black_l2;
   }
@@ -207,6 +207,7 @@ $pink_l2: lighten($pink_base, 20);
     }
   }
   &.blue {
+    background-color: $blue_base;
     .cls-1 {
       fill: $blue_l2;
     }
@@ -225,6 +226,7 @@ $pink_l2: lighten($pink_base, 20);
   }
 
   &.green {
+    background-color: $green_base;
     .cls-1 {
       fill: $green_l2;
     }
@@ -243,6 +245,7 @@ $pink_l2: lighten($pink_base, 20);
   }
 
   &.purple {
+    background-color: $purple_base;
     .cls-1 {
       fill: $purple_l2;
     }

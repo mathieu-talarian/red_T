@@ -1,10 +1,16 @@
 import React, { Component } from "react";
 import Board from "./Board";
+import { connect } from "react-redux";
 
-const Content = () => (
-  <div className="content">
-    <Board />
-  </div>
-);
+const Content = ({ np }) => {
+  return (
+    <div className="content">
+      <Board />
+    </div>
+  );
+};
 
-export default Content;
+export default connect(
+  null,
+  null
+)(Content);

@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import Cube from "../assets/cube.svg";
 
 const Case = ({ content }) => {
-  const color = content != 0 ? content.className : "";
-  const className = `case ${color}`;
+  let className = `case`;
+  className += content ? ` ${content.className}` : "";
   return <Cube className={className} />;
 };
 // const Case = ({ content }) => (

@@ -3,9 +3,12 @@ import alert from "./alert";
 
 import move from "./move";
 import tetris from "./tetris";
+import piece from "./pieces";
+import status from "./status"
 export default combineReducers({
-  alert: () => ({}),
+  status,
   move: () => ({}),
+  piece,
   tetris: () => ({
     tetris: [
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -24,10 +27,10 @@ export default combineReducers({
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [I, 0, 0, 0, 0, Z, J, J, 0, 0],
-      [I, 0, 0, 0, Z, Z, J, L, S, 0],
-      [I, 0, O, O, Z, T, J, L, S, S],
-      [I, 0, O, O, T, T, T, L, L, S]
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     ]
   })
 });

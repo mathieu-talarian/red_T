@@ -4,6 +4,7 @@ export const RIGHT = "RIGHT";
 export const TOP = "TOP";
 export const SPACE = "SPACE";
 export const NEW_GAME = "NEW_GAME";
+export const END_GAME = "END_GAME";
 export const NEW_PIECE = "NEW_PIECE";
 
 export const newGame = tetris => ({
