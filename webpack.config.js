@@ -1,5 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   webpack.config.js                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmoullec <mmoullec@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/09/30 17:13:29 by mmoullec          #+#    #+#             */
+/*   Updated: 2018/09/30 17:13:33 by mmoullec         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
 const path = require("path");
 // const dev = process.env.NODE_ENV === 'dev'
 const dev = true;
@@ -30,16 +44,16 @@ let cssLoaders = [
 ];
 
 // if (!dev) {
-  cssLoaders.push({
-    loader: "postcss-loader",
-    options: {
-      plugins: loader => [
-        require("autoprefixer")({
-          browsers: ["last 2 versions", "ie >= 7"]
-        })
-      ]
-    }
-  });
+cssLoaders.push({
+  loader: "postcss-loader",
+  options: {
+    plugins: loader => [
+      require("autoprefixer")({
+        browsers: ["last 2 versions", "ie >= 7"]
+      })
+    ]
+  }
+});
 // }
 
 module.exports = {
@@ -50,7 +64,7 @@ module.exports = {
     path: __dirname + "/src/server/dist",
     filename: "index.js"
   },
-  devtool: dev ? sourceMaps.sourceMap.name : false,
+  devtool: dev ? sourceMaps.inlineSourceMap.name : false,
   devServer: {
     contentBase: path.join(__dirname, "dist"),
     compress: true,
@@ -65,7 +79,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",
@@ -74,6 +88,20 @@ module.exports = {
             plugins: ["@babel/plugin-proposal-object-rest-spread"]
           }
         }
+      },
+      {
+        test: /.tsx?$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: "babel-loader",
+            options: {
+              presets: ["@babel/preset-env", "@babel/preset-react"],
+              plugins: ["@babel/plugin-proposal-object-rest-spread"]
+            }
+          },
+          { loader: "ts-loader" }
+        ]
       },
       {
         test: /\.(scss|sass)$/,
@@ -107,14 +135,22 @@ module.exports = {
       }
     ]
   },
+  resolve: {
+    extensions: [".js", ".jsx", ".ts", ".tsx"]
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/client/index.html",
       filename: "./index.html"
     }),
+    new webpack.ProvidePlugin({
+      Promise:
+        "imports-loader?this=>global!exports-loader?global.Promise!bluebird"
+    }),
     new ExtractTextPlugin({
       filename: dev ? "[name].css" : "[name].[contenthash:8].css",
       disable: false // ? dev
     })
+    // new UglifyJSPlugin()
   ]
 };

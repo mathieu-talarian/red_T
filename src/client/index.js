@@ -13,7 +13,6 @@ import "./style.scss";
 import { storeStateMiddleWare } from "./middleware/storeStateMiddleWare";
 import reducer from "./reducers/index";
 import App from "./containers/app";
-import { alert } from "./actions/alert";
 
 global.Promise = require("bluebird");
 
@@ -32,8 +31,6 @@ ReactDom.render(
   </BrowserRouter>,
   document.getElementById("tetris")
 );
-
-store.dispatch(alert("Soon, will be here a fantastic Tetris ..."));
 
 import openSocket from "socket.io-client";
 // const socket = openSocket(server.url());

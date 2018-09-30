@@ -1,27 +1,24 @@
 import { NEW_GAME, END_GAME } from "../actions/actions";
 import _ from "lodash";
 
-function foo() {
-  this.status = false;
-}
+const initialState = {
+  on: false,
+  timer: 0
+};
 
-foo.prototype.status = false;
-
-export default (state = {}, action) => {
-  const a = false;
-  const b = true;
+export default (state = initialState, action) => {
   switch (action.type) {
     case NEW_GAME:
       return {
         ...state,
-        status: true
+        on: true
       };
     case END_GAME:
       return {
         ...state,
-        status: false
+        on: false
       };
     default:
-      return _.assign(state, new foo());
+      return state;
   }
 };

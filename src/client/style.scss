@@ -168,10 +168,10 @@ $pink_d2: darken($pink_base, 14);
 $pink_l1: lighten($pink_base, 10);
 $pink_l2: lighten($pink_base, 20);
 
-svg {
-  width: 10%;
-  height: 5%;
-}
+// svg {
+//   width: 10%;
+//   height: 5%;
+// }
 svg.case {
   .cls-1 {
     fill: $black_l2;

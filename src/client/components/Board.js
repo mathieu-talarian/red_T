@@ -3,19 +3,18 @@ import { connect } from "react-redux";
 
 import Line from "./Line";
 
-const Board = props => {
-  const { tetris } = props.tetris;
+const Board = ({ tetris }) => {
   let lines = [];
-  if (tetris) {
-    tetris.forEach((element, key) => {
+  if (tetris.board) {
+    tetris.board.forEach((element, key) => {
       lines.push(<Line key={key} cols={element} />);
     });
   }
   return <div className="board">{lines}</div>;
 };
 
-const mapStateToProps = ({ tetris }) => ({
-  tetris
+const mapStateToProps = ({ game }) => ({
+  tetris: game.tetris
 });
 
 export default connect(
